@@ -40,7 +40,7 @@ class Encoder(nn.Module):
     """Embedding network between original feature space to latent space.
 
         Args:
-          - input: input time-series features.  [?, 24, 6]; (L, N, X) = (24, ?, 6)
+          - input: input time-series features. (L, N, X) = (24, ?, 6)
           - h3: (num_layers, N, H). [3, ?, 24]
 
         Returns:
@@ -54,9 +54,8 @@ class Encoder(nn.Module):
         self.apply(_weights_init)
 
     def forward(self, input, sigmoid=True):
-        e_outputs, _ = self.rnn(input)     # (L, N, H) = (24, ?, 24)
-        # e = e_outputs.transpose_(0, 1)
-        H = self.fc(e_outputs)             # [?, 24, 24]
+        e_outputs, _ = self.rnn(input)
+        H = self.fc(e_outputs)
         if sigmoid:
             H = self.sigmoid(H)
         return H
@@ -81,7 +80,6 @@ class Recovery(nn.Module):
 
     def forward(self, input, sigmoid=True):
         r_outputs, _ = self.rnn(input)
-        # r = r_outputs.transpose_(0, 1)
         X_tilde = self.fc(r_outputs)
         if sigmoid:
             X_tilde = self.sigmoid(X_tilde)
@@ -107,7 +105,6 @@ class Generator(nn.Module):
 
     def forward(self, input, sigmoid=True):
         g_outputs, _ = self.rnn(input)
-        # g_outputs.transpose(0, 1)
         E = self.fc(g_outputs)
         if sigmoid:
             E = self.sigmoid(E)
@@ -133,7 +130,6 @@ class Supervisor(nn.Module):
 
     def forward(self, input, sigmoid=True):
         s_outputs, _ = self.rnn(input)
-        # s_outputs.transpose(0, 1)
         S = self.fc(s_outputs)
         if sigmoid:
             S = self.sigmoid(S)
@@ -159,7 +155,6 @@ class Discriminator(nn.Module):
 
     def forward(self, input, sigmoid=False):
         d_outputs, _ = self.rnn(input)
-        # d_outputs.transpose(0, 1)
         Y_hat = self.fc(d_outputs)
         if sigmoid:
             Y_hat = self.igmoid(Y_hat)
