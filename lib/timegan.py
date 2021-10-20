@@ -94,7 +94,7 @@ class BaseModel():
     self.netr.train()
 
     # set mini-batch
-    self.X0, self.T = batch_generator(self.ori_data, self.ori_time, self.opt.batch_size)  # [128, 24, 6]
+    self.X0, self.T = batch_generator(self.ori_data, self.ori_time, self.opt.batch_size)
     self.X = torch.tensor(self.X0, dtype=torch.float32).to(self.device)
 
     # train encoder & decoder
@@ -108,7 +108,7 @@ class BaseModel():
     self.nets.train()
 
     # set mini-batch
-    self.X0, self.T = batch_generator(self.ori_data, self.ori_time, self.opt.batch_size)  # [128, 24, 6]
+    self.X0, self.T = batch_generator(self.ori_data, self.ori_time, self.opt.batch_size)
     self.X = torch.tensor(self.X0, dtype=torch.float32).to(self.device)
 
     # train superviser
@@ -124,7 +124,7 @@ class BaseModel():
     self.netg.train()
 
     # set mini-batch
-    self.X0, self.T = batch_generator(self.ori_data, self.ori_time, self.opt.batch_size)  # [128, 24, 6]
+    self.X0, self.T = batch_generator(self.ori_data, self.ori_time, self.opt.batch_size)
     self.X = torch.tensor(self.X0, dtype=torch.float32).to(self.device)
     self.Z = random_generator(self.opt.batch_size, self.opt.z_dim, self.T, self.max_seq_len)
 
@@ -141,7 +141,7 @@ class BaseModel():
     self.netd.train()
 
     # set mini-batch
-    self.X0, self.T = batch_generator(self.ori_data, self.ori_time, self.opt.batch_size)  # [128, 24, 6]
+    self.X0, self.T = batch_generator(self.ori_data, self.ori_time, self.opt.batch_size)
     self.X = torch.tensor(self.X0, dtype=torch.float32).to(self.device)
     self.Z = random_generator(self.opt.batch_size, self.opt.z_dim, self.T, self.max_seq_len)
 
@@ -284,52 +284,51 @@ class TimeGAN(BaseModel):
     def forward_e(self):
       """ Forward propagate through netE
       """
-      self.H = self.nete(self.X)     # [?, 24, 24]
+      self.H = self.nete(self.X)
 
     def forward_er(self):
       """ Forward propagate through netR
       """
-      self.H = self.nete(self.X)         # [?, 24, 24]
-      self.X_tilde = self.netr(self.H)   # [?, 24, 6]
+      self.H = self.nete(self.X)
+      self.X_tilde = self.netr(self.H)
 
     def forward_g(self):
       """ Forward propagate through netG
       """
-      self.E_hat = self.netg(self.Z)    # [?, 24, 24]
-
+      self.E_hat = self.netg(self.Z)
     def forward_dg(self):
       """ Forward propagate through netD
       """
-      self.Y_fake = self.netd(self.H_hat)   # [?, 24, 1]
-      self.Y_fake_e = self.netd(self.E_hat)  # [?, 24, 1]
+      self.Y_fake = self.netd(self.H_hat)
+      self.Y_fake_e = self.netd(self.E_hat)
 
     def forward_rg(self):
       """ Forward propagate through netG
       """
-      self.X_hat = self.netr(self.H_hat)    # [?, 24, 24]
+      self.X_hat = self.netr(self.H_hat)
 
     def forward_s(self):
       """ Forward propagate through netS
       """
-      self.H_supervise = self.nets(self.H)  # [?, 24, 24]
+      self.H_supervise = self.nets(self.H)
 
     def forward_sg(self):
       """ Forward propagate through netS
       """
-      self.H_hat = self.nets(self.E_hat)  # [?, 24, 24]
+      self.H_hat = self.nets(self.E_hat)
 
     def forward_d(self):
       """ Forward propagate through netD
       """
       self.Y_real = self.netd(self.H)
-      self.Y_fake = self.netd(self.H_hat)   # [?, 24, 1]
-      self.Y_fake_e = self.netd(self.E_hat)  # [?, 24, 1]
+      self.Y_fake = self.netd(self.H_hat)
+      self.Y_fake_e = self.netd(self.E_hat)
 
 
     def backward_er(self):
       """ Backpropagate through netE
       """
-      self.err_er = self.l_mse(self.X, self.X_tilde)    # [128, 24]
+      self.err_er = self.l_mse(self.X, self.X_tilde)
       self.err_er.backward(retain_graph=True)
 
       print("Loss: ", self.err_er)
