@@ -109,10 +109,10 @@ def NormMinMax(data):
       - min_val: minimum values (for renormalization)
       - max_val: maximum values (for renormalization)
     """
-    min_val = np.min(np.min(data, axis=0), axis=0)  # [0.    0.    0.00123226 0.    0.    0.]
+    min_val = np.min(np.min(data, axis=0), axis=0)
     data = data - min_val  # [3661, 24, 6]
 
-    max_val = np.max(np.max(data, axis=0), axis=0)  # [1.    1.    0.99876774 1.    1.    1.]
+    max_val = np.max(np.max(data, axis=0), axis=0)
     norm_data = data / (max_val + 1e-7)
 
     return norm_data, min_val, max_val
