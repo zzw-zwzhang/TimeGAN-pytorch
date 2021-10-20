@@ -12,4 +12,4 @@ Jinsung Yoon, Daniel Jarrett
 
 ## References
 
-[official tensorflow implementation](https://github.com/jsyoon0823/TimeGAN)
+[Official Tensorflow](https://github.com/jsyoon0823/TimeGAN)
