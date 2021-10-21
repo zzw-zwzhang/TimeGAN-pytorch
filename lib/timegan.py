@@ -272,8 +272,11 @@ class TimeGAN(BaseModel):
 
       # Setup optimizer
       if self.opt.isTrain:
+        self.nete.train()
+        self.netr,train()
         self.netg.train()
         self.netd.train()
+        self.nets.train()
         self.optimizer_e = optim.Adam(self.netd.parameters(), lr=self.opt.lr, betas=(self.opt.beta1, 0.999))
         self.optimizer_r = optim.Adam(self.netg.parameters(), lr=self.opt.lr, betas=(self.opt.beta1, 0.999))
         self.optimizer_g = optim.Adam(self.netd.parameters(), lr=self.opt.lr, betas=(self.opt.beta1, 0.999))
