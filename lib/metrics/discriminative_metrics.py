@@ -23,7 +23,7 @@ import tensorflow as tf
 import tensorflow.compat.v1 as tf1
 import numpy as np
 from sklearn.metrics import accuracy_score
-from utils import train_test_divide, extract_time, batch_generator
+from utils import train_test_divide, extract_time
 
 
 def discriminative_score_metrics (ori_data, generated_data):
