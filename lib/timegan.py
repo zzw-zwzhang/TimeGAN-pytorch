@@ -273,7 +273,7 @@ class TimeGAN(BaseModel):
       # Setup optimizer
       if self.opt.isTrain:
         self.nete.train()
-        self.netr,train()
+        self.netr.train()
         self.netg.train()
         self.netd.train()
         self.nets.train()
