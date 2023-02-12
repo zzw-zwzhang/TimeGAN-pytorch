@@ -7,7 +7,7 @@ Neural Information Processing Systems (NeurIPS), 2019.
 Paper link: https://papers.nips.cc/paper/8789-time-series-generative-adversarial-networks
 
 Last updated Date: October 18th 2021
-Code author: Zhiwei Zhang (bitzzw@gmail.com)
+Code author: Zhiwei Zhang (bitzzw@gmail.com), Biaolin Wen (robinbg@foxmail.com)
 
 -----------------------------
 
