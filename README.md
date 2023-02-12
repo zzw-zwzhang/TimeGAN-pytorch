@@ -15,4 +15,5 @@ This version is a correction of [zzw-zwzhang's version](https://github.com/zzw-z
 ## References
 
 [Official Tensorflow Implementation ](https://github.com/jsyoon0823/TimeGAN)
+
 [PyTorch Implementation by zzw-zwzhang ](https://github.com/zzw-zwzhang/TimeGAN-pytorch)
