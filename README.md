@@ -4,8 +4,6 @@ Pytorch implementation of the paper [Time-series Generative Adversarial Networks
 
 Jinsung Yoon, Daniel Jarrett
 
-This version is a correction of [zzw-zwzhang's version](https://github.com/zzw-zwzhang/TimeGAN-pytorch), and before my modification, the program just could not run properly.
-
 
 ## Dependencies
 - Python (>=3.7)
@@ -15,5 +13,3 @@ This version is a correction of [zzw-zwzhang's version](https://github.com/zzw-z
 ## References
 
 [Official Tensorflow Implementation ](https://github.com/jsyoon0823/TimeGAN)
-
-[PyTorch Implementation by zzw-zwzhang ](https://github.com/zzw-zwzhang/TimeGAN-pytorch)
